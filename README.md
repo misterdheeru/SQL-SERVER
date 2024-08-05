@@ -1,5 +1,5 @@
  
-# SQL Stored Procedures for Students Table
+# SQL Stored Procedures Example
 
 ## Creating Stored Procedure for Selecting All Records
 
