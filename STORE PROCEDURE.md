@@ -137,12 +137,5 @@ EXEC manageStudent @Action = 'DELETE', @stdID = 4;
 ```sql
 EXEC manageStudent @Action = 'UPDATE', @stdID = 1, @stdName = 'RAMA KRISHNA';
 ```
-```
-
-This procedure uses an `@Action` parameter to determine which SQL command to execute. Depending on the action specified, it performs the appropriate operation. You can save this content into a file with a `.md` extension, such as `manage_student_procedure.md`.
-
-END;
-GO
-
-EXEC updateStudent @stdID = 1, @stdName = 'RAMA KRISHNA';
+ 
  
