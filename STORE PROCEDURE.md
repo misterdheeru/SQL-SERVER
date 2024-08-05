@@ -70,7 +70,7 @@ AS
 BEGIN
     UPDATE Students SET stdName = @stdName WHERE stdID = @stdID;
 
-
+```
 
 
 # SQL Stored Procedure for Update, Select, and Delete Operations
