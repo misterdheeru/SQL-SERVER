@@ -1,46 +1,76 @@
  
+# SQL Stored Procedures for Students Table
 
+## Creating Stored Procedure for Selecting All Records
+
+```sql
+CREATE PROCEDURE selectStudents
+AS
+BEGIN
+    SELECT * FROM Students;
+END;
+GO
+
+EXEC selectStudents;
+```
+
+## Creating Stored Procedure for Selecting Single Record by Class
+
+```sql
+CREATE PROCEDURE selectWithClass 
+    @stdClass VARCHAR(255)
+AS
+BEGIN
+    SELECT * FROM Students WHERE stdClass = @stdClass;
+END;
+GO
+
+EXEC selectWithClass @stdClass = 'X';
+```
+
+## Creating Stored Procedure for Inserting Record
+
+```sql
+CREATE PROCEDURE insertStudents 
+    @stdID INT,
+    @stdName VARCHAR(255),
+    @stdClass VARCHAR(255),
+    @stdMobile VARCHAR(255)
+AS
+BEGIN
+    INSERT INTO Students (stdID, stdName, stdClass, stdMobile)
+    VALUES (@stdID, @stdName, @stdClass, @stdMobile);
+END;
+GO
+
+EXEC insertStudents @stdID = 4, @stdName = 'Krish', @stdClass = 'V', @stdMobile = '900626548';
+```
+
+## Creating Stored Procedure for Deleting Record
+
+```sql
+CREATE PROCEDURE deleteStudent 
+    @stdID INT
+AS
+BEGIN
+    DELETE FROM Students WHERE stdID = @stdID;
+END;
+GO
+
+EXEC deleteStudent @stdID = 4;
+```
+
+## Creating Stored Procedure for Updating Record
+
+```sql
+CREATE PROCEDURE updateStudent 
+    @stdID INT, 
+    @stdName VARCHAR(255)
+AS
+BEGIN
+    UPDATE Students SET stdName = @stdName WHERE stdID = @stdID;
+END;
+GO
+
+EXEC updateStudent @stdID = 1, @stdName = 'RAMA KRISHNA';
  
-/*CREATING STORE PROCEDURE SELECTING ALL RECORS*/
- create procedure selectStudents
- as
- Select *from  Students
- go
-
- exec selectStudents
-
- /*CREATING STORE PROCEDURE SELECTING SINGLE RECORS*/
- create procedure selectwithClass @stdClass  varchar(255)
- as 
- select *from Students Where stdClass= @stdClass
- go
-
- exec selectwithClass @stdClass = 'X'
- 
-/*CREATING STORE PROCEDURE INSERT  ALL RECORS*/
-create procedure insertStudents 
-@stdID int ,
-@stdName varchar(255) , 
-@stdClass varchar(255) ,
-@stdMobile varchar(255)
-as 
-insert into Students values(@stdID,@stdName ,@stdClass ,@stdMobile)
-go 
-exec insertStudents @stdID=4 , @stdName='Krish' ,@stdClass='V' ,@stdMobile='900626548'
- 
-/*CREATING STORE PROCEDURE DELETE RECORD*/
-create procedure  deleteStudent @stdID int
-as 
-delete from Students Where stdID = @stdID
-go
-
-exec deleteStudent @stdID=4
-
-/*CREATING STORE PROCEDURE UPDATE RECORD*/
-
-create procedure updateStudent @stdID int , @stdName varchar(255)
-as 
-update students set  stdName=@stdName where  stdID =@stdID
-go
-
-exec updateStudent @stdID=1 ,@stdName ='RAMA KRISHNA'
