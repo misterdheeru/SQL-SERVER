@@ -1,5 +1,5 @@
  
-# SQL Stored Procedures Example
+# SQL Stored Procedure Example
 
 ## Creating Stored Procedure for Selecting All Records
 
