@@ -69,6 +69,78 @@ CREATE PROCEDURE updateStudent
 AS
 BEGIN
     UPDATE Students SET stdName = @stdName WHERE stdID = @stdID;
+
+
+
+
+# SQL Stored Procedure for Update, Select, and Delete Operations
+
+## Creating Stored Procedure for Update, Select, and Delete
+
+```sql
+CREATE PROCEDURE manageStudent
+    @Action VARCHAR(10),
+    @stdID INT = NULL,
+    @stdName VARCHAR(255) = NULL,
+    @stdClass VARCHAR(255) = NULL,
+    @stdMobile VARCHAR(255) = NULL
+AS
+BEGIN
+    IF @Action = 'SELECT_ALL'
+    BEGIN
+        SELECT * FROM Students;
+    END
+    ELSE IF @Action = 'SELECT_BY_CLASS'
+    BEGIN
+        SELECT * FROM Students WHERE stdClass = @stdClass;
+    END
+    ELSE IF @Action = 'INSERT'
+    BEGIN
+        INSERT INTO Students (stdID, stdName, stdClass, stdMobile)
+        VALUES (@stdID, @stdName, @stdClass, @stdMobile);
+    END
+    ELSE IF @Action = 'DELETE'
+    BEGIN
+        DELETE FROM Students WHERE stdID = @stdID;
+    END
+    ELSE IF @Action = 'UPDATE'
+    BEGIN
+        UPDATE Students SET stdName = @stdName WHERE stdID = @stdID;
+    END
+END;
+GO
+```
+
+## Usage Examples
+
+### Select All Records
+```sql
+EXEC manageStudent @Action = 'SELECT_ALL';
+```
+
+### Select Records by Class
+```sql
+EXEC manageStudent @Action = 'SELECT_BY_CLASS', @stdClass = 'X';
+```
+
+### Insert a Record
+```sql
+EXEC manageStudent @Action = 'INSERT', @stdID = 4, @stdName = 'Krish', @stdClass = 'V', @stdMobile = '900626548';
+```
+
+### Delete a Record
+```sql
+EXEC manageStudent @Action = 'DELETE', @stdID = 4;
+```
+
+### Update a Record
+```sql
+EXEC manageStudent @Action = 'UPDATE', @stdID = 1, @stdName = 'RAMA KRISHNA';
+```
+```
+
+This procedure uses an `@Action` parameter to determine which SQL command to execute. Depending on the action specified, it performs the appropriate operation. You can save this content into a file with a `.md` extension, such as `manage_student_procedure.md`.
+
 END;
 GO
 
